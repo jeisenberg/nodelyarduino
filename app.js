@@ -5,18 +5,13 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
-  , tutorial = require('./routes/tutorial')
   , http = require('http')
   , arduino = require('duino')
+  , user = require('./routes/user')
+  , tutorial = require('./routes/tutorial')
   , path = require('path');
 
 var app = express();
-var board = new arduino.Board();
-var led = new arduino.Led({
-  board: board,
-  pin: 13
-});
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);

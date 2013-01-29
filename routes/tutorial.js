@@ -4,13 +4,20 @@
  */
 
 exports.on = function(req, res){
-	this.url = require('url')
-	var queryData = this.url.parse(req.url);
+	var self = this;
+	self.url = require('url');
+	self.arduino = require('duino');
+	self.board = new arduino.Board()
+  self.led = new arduino.Led({
+		board: self.board,
+		pin: 13
+	});
+	var queryData = self.url.parse(req.url);
   if (queryData.on == "true"){
 		res.render('tutorial', {on:queryData.on});
-	//	led.blink();
+		self.led.blink();
    } else {
 	res.render('tutorial', {on:queryData.on})
-	//  led.off();
+	  self.led.off();
   }
 };
