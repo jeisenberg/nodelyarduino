@@ -3,5 +3,5 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/?switch=1').home-switch On
-  a(href='/?switch=2').home-switch Off
+  a(href='/tutorial?on=true').home-switch On
+  a(href='/tutorial?on=false').home-switch Off

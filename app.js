@@ -6,10 +6,17 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , tutorial = require('./routes/tutorial')
   , http = require('http')
+  , arduino = require('duino')
   , path = require('path');
 
 var app = express();
+var board = new arduino.Board();
+var led = new arduino.Led({
+  board: board,
+  pin: 13
+});
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -30,7 +37,20 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/tutorial', tutorial.on);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+/* ARDUINO INITIALIZATION */
+
+
+
+
+
+
+
+
+
+
