@@ -13,7 +13,7 @@ exports.on = function(req, res){
 		pin: 13
 	});
 	var queryData = self.url.parse(req.url);
-  if (queryData.on == "true"){
+  if (queryData.query == "on=true"){
 		res.render('tutorial', {on:queryData.on});
 		self.led.blink();
    } else {
