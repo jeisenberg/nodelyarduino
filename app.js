@@ -9,6 +9,7 @@ var express = require('express')
   , arduino = require('duino')
   , user = require('./routes/user')
   , tutorial = require('./routes/tutorial')
+  , net = require('net')
   , path = require('path');
 
 var app = express();
@@ -38,7 +39,31 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
 
-/* ARDUINO INITIALIZATION */
+/* Arduino tcp server */
+
+var tcpServer = net.createServer(function(socket){
+	console.log('tcp server runnung on port 1337')
+});
+
+var arduinoTcp = null;
+
+tcpServer.on('connection', function(socket){
+	console.log('num of connections on port 1337: ' + tcpServer.connections);
+	arduinoTcp = socket;
+	socket.on('data', function(myData){
+		
+	})
+});
+
+app.get('/on', function(req, res){
+	if (arduinoTcp === null){
+		console.log('offline');
+	} else {
+		arduinoTcp.write('1')
+	}
+});
+
+tcpServer.listen(1337);
 
 
 
