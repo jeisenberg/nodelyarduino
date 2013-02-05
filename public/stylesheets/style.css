@@ -11,3 +11,13 @@ a {
 .home-switch {
   margin-right: 20px;
 }
+#console {
+  height: 300px;
+  width: 400px;
+  background: #333;
+  padding: 10px;
+  color: #fff;
+}
+.jquery-console-cursor {
+  color: #fff;
+}
