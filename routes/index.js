@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Arduino Academy' });
+  res.render('index', {title: 'Arduino Tutorial'});
 };

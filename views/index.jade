@@ -1,8 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a(href='/tutorial?on=true').home-switch On
-  a(href='/tutorial?on=false').home-switch Off
-  a(href='/on').home-switch On Tcp
+  .row
+    .span12
+      h1 Welcome to Arduino Academy
+  .row
+    .span6
+      h3 Learn how to program by making a robot
+        p Yes, a robot.
+    .span6
+      #console
+      a(href='/tutorial?on=true').home-switch On
+      a(href='/tutorial?on=false').home-switch Off
+      a(href='/on').home-switch On Tcp
