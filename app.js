@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , fs = require('fs')
   , routes = require('./routes')
   , http = require('http')
   , arduino = require('duino')
@@ -11,6 +12,21 @@ var express = require('express')
   , tutorial = require('./routes/tutorial')
   , net = require('net')
   , path = require('path');
+
+/* INCLUDE MODELS */
+var models_path = __dirname + '/models';
+fs.readdirSync(models_path).forEach(function (file) {
+	require(models_path+'/'+file)
+});
+
+/*Config */
+// Load configurations
+var env = process.env.NODE_ENV || 'development'
+  , config = require('./config/config')[env]
+  , mongoose = require('mongoose');
+
+/* CONNECT TO DB */
+mongoose.connect(config.db);
 
 var app = express();
 
