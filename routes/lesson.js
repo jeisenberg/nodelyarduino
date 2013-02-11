@@ -1,2 +1,0 @@
-/* ROUTES FOR LESSONS */
-

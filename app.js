@@ -5,11 +5,9 @@
 
 var express = require('express')
   , fs = require('fs')
-  , routes = require('./routes')
+  , controllers = require('./controllers')
   , http = require('http')
   , arduino = require('duino')
-  , user = require('./routes/user')
-  , tutorial = require('./routes/tutorial')
   , net = require('net')
   , path = require('path');
 
@@ -18,6 +16,10 @@ var models_path = __dirname + '/models';
 fs.readdirSync(models_path).forEach(function (file) {
 	require(models_path+'/'+file)
 });
+
+var user = require('./controllers/user')
+, lesson = require('./controllers/lesson')
+, tutorial = require('./controllers/tutorial');
 
 /*Config */
 // Load configurations
@@ -47,9 +49,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/tutorial', tutorial.on);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
@@ -71,6 +70,11 @@ tcpServer.on('connection', function(socket){
 	})
 });
 
+app.get('/', controllers.index);
+app.get('/users', user.list);
+app.get('/tutorial', tutorial.on);
+/* LESSONS ROUTES */
+app.get('/lessons/new', lesson.new);
 app.get('/on', function(req, res){
 	if (arduinoTcp === null){
 		console.log('offline');
