@@ -75,6 +75,8 @@ app.get('/users', user.list);
 app.get('/tutorial', tutorial.on);
 /* LESSONS ROUTES */
 app.get('/lessons/new', lesson.new);
+app.post('/lessons', lesson.create);
+
 app.get('/on', function(req, res){
 	if (arduinoTcp === null){
 		console.log('offline');

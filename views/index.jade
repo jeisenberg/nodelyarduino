@@ -1,14 +1,13 @@
-extends layout
-
+extends ../views/layouts/default
 block content
   .row
-    .span14
+    .span6
       h1 Welcome to Arduino Academy
   .row
-    .span7
+    .span6
       h3 Learn how to program by making a robot
       p Yes, a robot.
-    .span7
+    .span6
       #console
       a(href='/tutorial?on=true').home-switch On
       a(href='/tutorial?on=false').home-switch Off
