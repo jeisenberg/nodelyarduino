@@ -2,7 +2,7 @@
 var Console = function(){
 	var self = this;
 	var wrapper = $('#console');
-	self.terminal = wrapper.jqconsole('//Write something here', '');
+	self.terminal = wrapper.jqconsole('>>', '');
 	self.terminal.RegisterMatching('{', '}', 'brackets');
 	self.startPrompt = function(){
 	          // Start the prompt with history enabled.

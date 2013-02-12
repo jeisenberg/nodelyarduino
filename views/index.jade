@@ -1,14 +1,22 @@
 extends ../views/layouts/default
 block content
   .row
-    .span6
-      h1 Welcome to Arduino Academy
+    .span12
+      h1.header Welcome to Arduino Academy
   .row
-    .span6
+    .span5
       h3 Learn how to program by making a robot
-      p Yes, a robot.
-    .span6
+      p Ready to get started? We thought so!
+      br
+      p If you haven't already, you will want to make sure all of your materials are in order. 
+      br
+      p Let's begin by setting up your Arduino so that it can read commands from your computer. We are going to dump some magic onto the arduino board so it can learn as we learn. Click the button below to get started.
+      a.btn.btn-info(href="/lessons") Get started
+    .span6.offset1
       #console
       a(href='/tutorial?on=true').home-switch On
       a(href='/tutorial?on=false').home-switch Off
       a(href='/on').home-switch On Tcp
+  .row
+    .span12
+      a(href='/lessons') View lessons
