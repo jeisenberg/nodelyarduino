@@ -81,11 +81,15 @@ app.get('/lessons/:id', lesson.show);
 app.param('id', lesson.lesson);
 
 app.get('/on', function(req, res){
+  var _status;
 	if (arduinoTcp === null){
 		console.log('offline');
+		_status = 'off'
 	} else {
 		arduinoTcp.write('1')
+		_status = 'off'
 	}
+	res.json({status : _status})
 });
 
 tcpServer.listen(1337);
