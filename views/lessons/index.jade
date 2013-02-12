@@ -1,0 +1,7 @@
+extends ../layouts/default
+block content
+  each lesson in lessons
+    .lesson
+      h5
+        a.title(href='/lessons/'+lesson._id, title=lesson.title) #{lesson.title}
+      p=lesson.info

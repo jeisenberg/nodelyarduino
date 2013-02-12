@@ -31,3 +31,38 @@ exports.create = function(req, res){
 		}
 	});
 }
+
+exports.index = function(req, res){
+	var self = this;
+	Lesson.find({}).exec(function(err, lessons){
+		if (err) {
+			console.log(err.errors)
+			return res.redirect('/')
+		} else {
+			res.render('lessons/index', {
+				lessons : lessons
+			});
+		}
+	});
+}
+
+exports.lesson = function(req, res, next, id){
+	var self = this;
+	Lesson.findOne({_id:id}).exec(function(err, lesson){
+		if (err){
+			return res.redirect('lessons/index')
+			console.log(err.errors)
+		}
+		else {
+			req.lesson = lesson
+			next();
+		}	
+	});
+}
+
+exports.show = function(req, res){
+	res.render('lessons/show', {
+		title : req.lesson.title,
+		lesson : req.lesson
+	});
+}

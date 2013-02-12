@@ -76,6 +76,9 @@ app.get('/tutorial', tutorial.on);
 /* LESSONS ROUTES */
 app.get('/lessons/new', lesson.new);
 app.post('/lessons', lesson.create);
+app.get('/lessons', lesson.index);
+app.get('/lessons/:id', lesson.show);
+app.param('id', lesson.lesson);
 
 app.get('/on', function(req, res){
 	if (arduinoTcp === null){
